@@ -5,20 +5,20 @@ module.exports = {
     return models.users
     .insertMany([
       {
-        _id:  "65e15c64ffd472dd229cc437",
-        firstname: "adhi",
-        lastname: "cr",
+        _id:  "65f28411f84173b574e35600",
+        first_name: "adhi",
+        last_name: "cr",
         email: "adhi@gmail.com",
         password: "$2a$12$9fhgl.9Kr9KLWoK5thvxk.qbACUNZO319PQddk4P3NIFEfhOWHMJO",
-        phone: "9048475227"
+      
       },
       {
-        _id: "65e15c92ffd472dd229cc438",
-        firstname: "abin",
-        lastname : "sasi",
+        _id: "65f2845ff84173b574e35602",
+        first_name: "abin",
+        last_name : "sasi",
         email: "abin@gmail.com",
         password: "$2a$12$nIlueSiZI3D0DS54SjtUuOm7hQvj9FR91I5OW4K.AaAOtBRSgrJsm",
-        phone: "9999958555"
+       
       }
     ])
   },
@@ -28,8 +28,8 @@ module.exports = {
     .deleteMany({
       _id : {
         $in: [
-          "65e15c64ffd472dd229cc437",
-          "65e15c92ffd472dd229cc438"
+          "65f28411f84173b574e35600",
+          "65f2845ff84173b574e35602"
         ],
       },
     })
