@@ -2,14 +2,29 @@ const users = require('../db/models/users');
 const bcrypt = require('bcryptjs');
 const success_function = require('../utils/response-handler').success_function ;
 const error_function = require('../utils/response-handler').error_function ;
-const jwt = require("jsonwebtoken");
+const set_pass_template = require("../utils/email-templates/setPassword").resetPassword;
+const sendEmail = require ("../utils/send-email").sendEmail;
+
+function generateRandomPassword(length) {
+    let charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$";
+    let password = "";
+
+    for (var i = 0; i<length;i++) {
+        var randomIndex = Math.floor(Math.random() * charset.length);
+        password += charset.charAt(randomIndex);
+    }
+    return password;
+}
+
 
 async function createUser (req,res) {
     try {
         let first_name = req.body.first_name ;
         let last_name = req.body.last_name;
         let email = req.body.email;
-        let password = req.body.password;
+        let password = generateRandomPassword(12);
+
+        console.log("name : ",first_name)
 
         let userFound =await users.findOne({email});
 
@@ -32,16 +47,25 @@ async function createUser (req,res) {
             last_name,
             email,
             password : hashed_password,
+            user_type : "65f3d65961496a1395461cf1"
         });
 
+
         if (new_user) {
+            let emailContent = await set_pass_template(first_name,email,password);
+
+            await sendEmail(email, "set your password",emailContent);
+               console.log("email : ", email)
+
             let response_datas = {
                 _id : new_user._id,
                 first_name : new_user.first_name,
                 last_name : new_user.last_name,
                 email : new_user.email,
+                user_type : "65f3d65961496a1395461cf1"
                
             }
+            
             console.log("new_user : ",new_user);
 
             let response = success_function({
@@ -74,6 +98,7 @@ async function createUser (req,res) {
 async function getUserData(req,res){
     try {
         let allUsers = await users.find({});
+        
 
         if (allUsers.length > 0) {
             let response = success_function({
@@ -100,7 +125,6 @@ async function getUserData(req,res){
         res.status(response.statusCode).send(response)
     }
 } 
-
 
 module.exports = {
     createUser,

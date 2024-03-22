@@ -10,7 +10,7 @@ module.exports = {
         last_name: "cr",
         email: "adhi@gmail.com",
         password: "$2a$12$9fhgl.9Kr9KLWoK5thvxk.qbACUNZO319PQddk4P3NIFEfhOWHMJO",
-      
+        user_type :   "65fd0d8a96af996fdfb36c79"
       },
       {
         _id: "65f2845ff84173b574e35602",
@@ -18,7 +18,7 @@ module.exports = {
         last_name : "sasi",
         email: "abin@gmail.com",
         password: "$2a$12$nIlueSiZI3D0DS54SjtUuOm7hQvj9FR91I5OW4K.AaAOtBRSgrJsm",
-       
+        user_type :   "65fd0da796af996fdfb36c7a"
       }
     ])
   },
