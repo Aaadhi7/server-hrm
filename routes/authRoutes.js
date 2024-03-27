@@ -6,8 +6,7 @@ const accessControl = require ("../utils/access-control").accessControl;
 
 const setAccessControl = (access_type) => {
     return (req, res, next) => {
-        accessControl(access_type, req, res, next) ;
-        
+        accessControl(access_type, req, res, next);
     }
 };
 

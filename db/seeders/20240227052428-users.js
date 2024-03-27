@@ -21,6 +21,9 @@ module.exports = {
         user_type :   "65fd0da796af996fdfb36c7a"
       }
     ])
+    .then((res)=>{
+      console.log(res.insertedCount);
+    })
   },
 
   down: (models, mongoose) => {
